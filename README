@@ -1,0 +1,102 @@
+this tar file consists of following files
+
+
+ini_file_parser.cpp
+ini_file_parser.h
+Makefile
+test.ini
+test2.ini
+
+
+ini_file_parser.cpp written in C++ ,tries to implement following as given by manager 
+
+write a INI file parser program in C++ that parses an ini file and provides access methods to users.  (Sample INI file is attached)
+
+Ini format requirements
+?       supported data types = int, string, float, size-string (e.g. 1GB, 10MB)
+?       each entry can have a multi-line value. 
+?       a single line comment is supported: ?;? 
+?       a multi-line comment is supported: /* ? */
+User interface requirements
+?       users can search for a particular entry in a section
+?       users can list all the entries in a section 
+?       users can list all the entries (with a section name) in a given ini file
+?       size can be retrieved in a user-provided unit   (?B? for bytes, ?MB? for megabytes , ?GB? for gigabytes, ?TB? for terabytes)
+?       e.g. in the sample file, input_buffer_size is set to 1GB but users can retrieve this value in MB. (1024MB)
+Performance requirements / assumption 
+?       Look up of each entry and a look up of a section name should be done in O(log n)
+?       Listing of all entries should be done in O(log n)
+?       memory is big enough to hold all the entries
+
+
+
+Makefile is file which builds executable which is ini_file_parser
+
+untar file using following command on linux terminal ( I used ubuntu 20.04  to build and test it ) 
+
+
+tar -zxvf ini_file_parser.tar.gz 
+
+cd init_parser
+
+make
+
+to run
+
+./ini_file_parser  test.ini 
+
+or
+
+./ini_file_parser test2.ini
+
+
+
+
+test.ini is original test file given by manager at Samsung Mr.Changho
+
+test2.ini file which contains multi line c like comment ( /* this is test */ , comments between /* and */ are ignored )
+
+single line comment are supported by character ";"
+
+there are limitations in this program, I did not had enogh time to test all corner cases
+
+
+once program is run it creates map(dictionary)  of section as key and  entries in section as subkeys which has  second element ( values ) , in map dictionary these subkeys are also dictionary with values as values of (second element ) variables 
+
+
+for example 
+   
+
+
+[device]             ; Protocol configuration
+path=/dev/nvme0n1
+
+
+is represented as 
+
+
+{ "device" : { "path":"/dev/nvme0n1" } } 
+
+once program parses and creates a dictionary of dictionaries it enters a infine while loop waiting to user to type commands ,it (program ) reads the commands and returns ouput to quit program type q and command prompt "enter command->"
+
+
+supported commands are 
+
+
+ll section_name  to display all entries in a section 
+la l  to display all entries in all sections  
+l section_name  to display entry in a section
+C MB to chage display unit to Mega Bytes , supported values are BB ( for Bytes) MB ( for Mega Bytes ) KB ( for Kilo Bytes ) GB ( for Giga Bytes) GB and for TB (for Tera Bytes )
+Help or help or h to display help message
+q to quit program 
+
+
+
+
+   
+
+
+Author :- Alok Kumar Mishra
+e-mail:- akmishra_99@yahoo.com
+Sunday January 8 2023
+ 
