@@ -35,7 +35,7 @@ Makefile is file which builds executable which is ini_file_parser
 untar file using following command on linux terminal ( I used ubuntu 20.04  to build and test it ) 
 
 
-tar -zxvf ini_file_parser.tar.gz 
+tar -zxvf init_file_parser.tar.gz 
 
 cd init_parser
 
